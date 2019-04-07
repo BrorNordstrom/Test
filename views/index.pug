@@ -11,21 +11,26 @@ block content
           form.form-inline(method="post", action="weather")
             .form-group
               label.sr-only(for="inputEmail") City Name
-              input.form-control( name="city" type="text" placeholder="Enter City Name" required='required')
-              
+              input.form-control( name="city" type="text" placeholder="Enter City Name" )
             |    
             button.btn.btn-primary(type="submit") Fetch Weather
-          
         hr
       .row
        .col-md-12
               if body
-                .card
-                .card-header Weather Forecast #{forecast}
-                .card-body 
+                if body.main
+                        .card
+                        .card-header Weather Forecast #{forecast}
+                        .card-body 
                         p Temperature:  #{body.main.temp}
                         p Humdity:  #{body.main.humidity}
+                else
+                if body.wind
                         p Speed:  #{body.wind.speed}
-                .card-footer 
+                        .card-footer Weather App
+                else
               else
-                     | Enter city name and click Fetch Weather button
+                   .card
+                   .card-header Weather Forecast App
+                   .card-body
+                   .card-footer Enter city name and click Fetch Weather button
